@@ -15,10 +15,10 @@ export type MessageType = {
 };
 
 export type ChatStateType = {
-  chat: MessageType[];
+  messages: MessageType[];
 };
 const initialState: ChatStateType = {
-  chat: [
+  messages: [
     { message: 'hello', id: '4545', user: { id: '45r4as5', name: 'Sergey' } },
     { message: 'hello', id: '454ds5', user: { id: '45e4as5', name: 'Sasha' } },
     // { message: 'hello', id: '4asd545', user: { id: '45s4as5', name: 'Sveta' } },
@@ -36,20 +36,32 @@ type AsyncThunkConfigType = {
 
 // create thunk
 
-export const createConnection = createAsyncThunk<any, any, AsyncThunkConfigType>(
-  'chat/connectSocketChat',
-  thunkAPI => {
-    socketApi.createConnection();
-    socketApi.subscribe(
-      messages => {
-        thunkAPI.dispatch(setMessages({ chat: messages }));
-      },
-      newMessage => {
-        thunkAPI.dispatch(setNewMessage({ message: newMessage }));
-      },
-    );
-  },
-);
+// export const _createConnection = createAsyncThunk<any, any, AsyncThunkConfigType>(
+//   'chat/connectSocketChat',
+//   thunkAPI => {
+//     socketApi.createConnection();
+//     socketApi.subscribe(
+//       messages => {
+//         thunkAPI.dispatch(setMessages({ messages }));
+//       },
+//       newMessage => {
+//         thunkAPI.dispatch(setNewMessage({ message: newMessage }));
+//       },
+//     );
+//   },
+// );
+
+export const createConnection = () => (dispatch: any) => {
+  socketApi.createConnection();
+  socketApi.subscribe(
+    messages => {
+      dispatch(setMessages({ messages }));
+    },
+    newMessage => {
+      dispatch(setNewMessage({ message: newMessage }));
+    },
+  );
+};
 
 export const sendNameTC = createAsyncThunk<any, any, AsyncThunkConfigType>(
   'chat/sendName',
@@ -73,12 +85,12 @@ const slice = createSlice({
   name: 'chat',
   initialState,
   reducers: {
-    setMessages(state, action: PayloadAction<{ chat: MessageType[] }>) {
-      state.chat = action.payload.chat;
-      console.log(action.payload.chat);
+    setMessages(state, action: PayloadAction<{ messages: MessageType[] }>) {
+      state.messages = action.payload.messages;
+      console.log(action.payload.messages);
     },
     setNewMessage(state, action: PayloadAction<{ message: MessageType }>) {
-      state.chat.push(action.payload.message);
+      state.messages.push(action.payload.message);
       console.log(action.payload.message);
     },
   },

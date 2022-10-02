@@ -7,8 +7,9 @@ import React, {
   useState,
 } from 'react';
 
+import { MessageStateType } from '../../api/SocketApi';
+
 import s from './Chat.module.scss';
-import { MessageStateType } from './ChatContainer';
 
 type ChatPropsType = {
   messages: MessageStateType[];
