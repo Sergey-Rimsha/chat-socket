@@ -5,33 +5,4 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
-}
-
-.chat {
-  border: solid 1px red;
-  width: 300px;
-  height: 400px;
-  padding: 10px;
-  overflow-y: auto;
-
-  margin-top: 25px;
-
-  &__item {
-    border: solid black 1px;
-    margin-top: 15px;
-    padding: 10px;
-  }
-
-  &__title {
-
-  }
-
-  &__name {
-
-  }
-
-  &__message {
-    margin-top: 10px;
-  }
 }
