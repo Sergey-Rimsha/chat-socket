@@ -3,14 +3,17 @@ import { useDispatch } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 
 import { chatReducer } from './chatReducer';
+import { baseApi } from './rtqSocketApi';
 
 const rootReducer = combineReducers({
   chat: chatReducer,
+  [baseApi.reducerPath]: baseApi.reducer,
 });
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().prepend(thunkMiddleware).concat(baseApi.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
