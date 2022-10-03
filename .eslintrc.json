@@ -27,17 +27,27 @@
     "react-hooks",
     "@typescript-eslint"
   ],
-  "overrides": [{ "files": [
-    ".js",
-    ".ts",
-    ".jsx",
-    ".tsx",
-    "**/*.spec.js",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "**/*.spec.tsx"
-  ] }],
+  "overrides": [
+    {
+      "files": [
+        ".js",
+        ".ts",
+        ".jsx",
+        ".tsx",
+        "**/*.spec.js",
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/*.spec.tsx"
+      ]
+    }
+  ],
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "import/order": [
       "error",
       {
@@ -70,9 +80,33 @@
     "consistent-return": "off",
     "padding-line-between-statements": [
       "error",
-      { "blankLine": "always", "prev": "*", "next": "return"},
-      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*"},
-      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"]}
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      },
+      {
+        "blankLine": "always",
+        "prev": [
+          "const",
+          "let",
+          "var"
+        ],
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": [
+          "const",
+          "let",
+          "var"
+        ],
+        "next": [
+          "const",
+          "let",
+          "var"
+        ]
+      }
     ],
     "no-shadow": "off",
     "no-debugger": "error",
@@ -88,13 +122,16 @@
       }
     ],
     "no-use-before-define": "off",
-    "no-param-reassign": ["error", {
-      "props": true,
-      "ignorePropertyModificationsFor": [
-        "state",
-        "self"
-      ]
-    }],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "state",
+          "self"
+        ]
+      }
+    ],
     "react/display-name": "off",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
@@ -116,10 +153,15 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "react/jsx-props-no-spreading": [0, {
-      "html": "ignore"
-    }],
-    "@typescript-eslint/no-unused-vars": ["error"],
+    "react/jsx-props-no-spreading": [
+      0,
+      {
+        "html": "ignore"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error"
+    ],
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       {
