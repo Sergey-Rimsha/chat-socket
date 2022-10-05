@@ -3,21 +3,17 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { MessageStateType } from '../../api/SocketApi';
-import {
-  createConnection,
-  destroyConnection,
-  sendMessageTC,
-  sendNameTC,
-} from '../../store/chatReducer';
+import { destroyConnection, sendMessageTC, sendNameTC } from '../../store/chatReducer';
+import { useCreateConnectionSocketQuery } from '../../store/rtqSocketApi';
 import { RootState, useAppDispatch } from '../../store/store';
 
 import { Chat } from './Chat';
 
 export const ChatContainer = (): ReactElement => {
-  // const { data = [] } = useCreateConnectionSocketQuery({});
+  const { data = [] } = useCreateConnectionSocketQuery({});
 
   // useCreateConnectionSocketQuery({});
-  // console.log(data);
+  console.log(data);
 
   const messages = useSelector<RootState, MessageStateType[]>(
     (state: RootState) => state.chat.messages,
@@ -50,7 +46,7 @@ export const ChatContainer = (): ReactElement => {
   };
 
   useEffect(() => {
-    dispatch(createConnection());
+    // dispatch(createConnection());
 
     return () => {
       dispatch(destroyConnection());
