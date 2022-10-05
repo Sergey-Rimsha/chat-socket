@@ -36,18 +36,17 @@ type AsyncThunkConfigType = {
 
 // create thunk
 
-// export const _createConnection = createAsyncThunk<any, any, AsyncThunkConfigType>(
+// export const createConnection = createAsyncThunk<any, any, AsyncThunkConfigType>(
 //   'chat/connectSocketChat',
 //   thunkAPI => {
-//     socketApi.createConnection();
-//     socketApi.subscribe(
-//       messages => {
-//         thunkAPI.dispatch(setMessages({ messages }));
-//       },
-//       newMessage => {
-//         thunkAPI.dispatch(setNewMessage({ message: newMessage }));
-//       },
-//     );
+//     const socket = io('http://localhost:7001', {});
+//
+//     socket.on('init-messages-published', (messages: MessageStateType[]) => {
+//       thunkAPI.dispatch(setMessages({ messages }));
+//     });
+//     socket.on('new-message-sent', (newMessage: MessageStateType) => {
+//       thunkAPI.dispatch(setNewMessage({ message: newMessage }));
+//     });
 //   },
 // );
 
@@ -87,11 +86,11 @@ const slice = createSlice({
   reducers: {
     setMessages(state, action: PayloadAction<{ messages: MessageType[] }>) {
       state.messages = action.payload.messages;
-      console.log(action.payload.messages);
+      // console.log(action.payload.messages);
     },
     setNewMessage(state, action: PayloadAction<{ message: MessageType }>) {
       state.messages.push(action.payload.message);
-      console.log(action.payload.message);
+      // console.log(action.payload.message);
     },
   },
 });
