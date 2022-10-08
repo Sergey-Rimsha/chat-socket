@@ -38,15 +38,41 @@ type AsyncThunkConfigType = {
 
 // export const createConnection = createAsyncThunk<any, any, AsyncThunkConfigType>(
 //   'chat/connectSocketChat',
-//   thunkAPI => {
+//   async thunkAPI => {
 //     const socket = io('http://localhost:7001', {});
 //
-//     socket.on('init-messages-published', (messages: MessageStateType[]) => {
-//       thunkAPI.dispatch(setMessages({ messages }));
-//     });
-//     socket.on('new-message-sent', (newMessage: MessageStateType) => {
-//       thunkAPI.dispatch(setNewMessage({ message: newMessage }));
-//     });
+//     try {
+//       socket.on('init-messages-published', (messages: MessageStateType[]) => {
+//         thunkAPI.dispatch(setMessages({ messages }));
+//       });
+//       socket.on('new-message-sent', (newMessage: MessageStateType) => {
+//         thunkAPI.dispatch(setNewMessage({ message: newMessage }));
+//       });
+//     } catch {
+//       console.log('error');
+//     }
+//   },
+// );
+
+// export const createConnection = createAsyncThunk<any, any, AsyncThunkConfigType>(
+//   'chat/connectSocketChat',
+//   async thunkAPI => {
+//     console.log('connect');
+//     try {
+//       socketApi.createConnection();
+//       console.log('try connect');
+//       await socketApi.subscribe(
+//         messages => {
+//           console.log(messages);
+//           thunkAPI.dispatch(setMessages({ messages }));
+//         },
+//         newMessage => {
+//           thunkAPI.dispatch(setNewMessage({ message: newMessage }));
+//         },
+//       );
+//     } catch {
+//       console.log('error');
+//     }
 //   },
 // );
 

@@ -24,7 +24,6 @@ export const socketApi = {
     initMessagesHandler: (messages: MessageStateType[]) => void,
     newMessageHandler: (newMessage: MessageStateType) => void,
   ) {
-    console.log('subcriber');
     this.socket?.on('init-messages-published', initMessagesHandler);
     this.socket?.on('new-message-sent', newMessageHandler);
   },

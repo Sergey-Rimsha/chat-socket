@@ -10,10 +10,11 @@ import { RootState, useAppDispatch } from '../../store/store';
 import { Chat } from './Chat';
 
 export const ChatContainer = (): ReactElement => {
-  const { data = [] } = useCreateConnectionSocketQuery({});
+  const { data, status } = useCreateConnectionSocketQuery({});
 
   // useCreateConnectionSocketQuery({});
   console.log(data);
+  console.log(status);
 
   const messages = useSelector<RootState, MessageStateType[]>(
     (state: RootState) => state.chat.messages,

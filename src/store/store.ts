@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
 export const store = configureStore({
   reducer: rootReducer,
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().prepend(thunkMiddleware).concat(baseApi.middleware),
+    getDefaultMiddleware().concat(baseApi.middleware, thunkMiddleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
